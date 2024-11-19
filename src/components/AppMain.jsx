@@ -13,6 +13,10 @@ export default function AppMain() {
 
     const tagList = ['Educativo', 'Divertente', 'Noioso', 'Complicato', 'Esaurito']
 
+    function handleTag(tag) {
+        setNewTag([...newTag, tag])
+    }
+
     function addArticle(e) {
         e.preventDefault(e)
 
@@ -115,6 +119,22 @@ export default function AppMain() {
                     </div>
 
                     <div className="mb-3">
+                        <label htmlFor="tags" className="form-label">Tags</label>
+                        <div>
+                            {tagList.map((tag, index) => (
+                                <div key={index} className="form-check form-check-inline">
+                                    <input className="form-check-input"
+                                        type="checkbox"
+                                        id={index}
+                                        checked={newTag}
+                                        onChange={() => handleTag(tag)} />
+                                    <label htmlFor="tags" className="form-check-label">{tag}</label>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="mb-3">
                         <label className="form-check-label" htmlFor="published">Da Pubblicare</label>
                         <input className="form-check-input ms-2 "
                             type="checkbox"
@@ -139,6 +159,7 @@ export default function AppMain() {
                                 <img src={article.image} alt="" />
                                 <div>{article.content}</div>
                                 <div><strong>Categoria: </strong>{article.category}</div>
+                                <div><strong>Tags: </strong>{article.tags.join(', ')}</div>
                                 <div><strong>Stato: </strong>{article.published ? 'Da Pubblicare' : 'Da non Pubblicare'}</div>
                             </div>
 
