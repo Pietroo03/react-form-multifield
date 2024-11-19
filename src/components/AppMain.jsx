@@ -14,7 +14,9 @@ export default function AppMain() {
     const tagList = ['Educativo', 'Divertente', 'Noioso', 'Complicato', 'Esaurito']
 
     function handleTag(tag) {
-        setNewTag([...newTag, tag])
+        setNewTag((prevTags) =>
+            prevTags.includes(tag) ? prevTags.filter((t) => t !== tag) : [...prevTags, tag]
+        )
     }
 
     function addArticle(e) {
@@ -126,7 +128,7 @@ export default function AppMain() {
                                     <input className="form-check-input"
                                         type="checkbox"
                                         id={index}
-                                        checked={newTag}
+                                        checked={newTag.includes(tag)}
                                         onChange={() => handleTag(tag)} />
                                     <label htmlFor="tags" className="form-check-label">{tag}</label>
                                 </div>
