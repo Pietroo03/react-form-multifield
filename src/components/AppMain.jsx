@@ -140,6 +140,7 @@ export default function AppMain() {
                         </select>
                     </div>
 
+
                     <div className="text-center">
                         <button className="btn btn-primary" type="submit" id="button-addon2">Aggiungi Post</button>
                     </div>
@@ -152,7 +153,7 @@ export default function AppMain() {
                     {articles.map((article, index) =>
                         <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             <div>
-                                <div><strong>{article.title}</strong></div>
+                                <div>Titolo: <strong>{article.title}</strong></div>
                                 <div>{article.image}</div>
                                 <div>{article.content}</div>
                                 <div><strong>Categoria: </strong>{article.category}</div>
