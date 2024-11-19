@@ -117,7 +117,6 @@ export default function AppMain() {
                             id="published"
                             checked={isPublished}
                             onChange={e => setIsPublished(e.target.checked)} />
-
                     </div>
 
                     <div className="text-center">
@@ -133,12 +132,10 @@ export default function AppMain() {
                         <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             <div>
                                 <div>Titolo: <strong>{article.title}</strong></div>
-                                <div>{article.image}</div>
+                                <img src={article.image} alt="" />
                                 <div>{article.content}</div>
                                 <div><strong>Categoria: </strong>{article.category}</div>
                                 <div><strong>Stato: </strong>{article.published ? 'Da Pubblicare' : 'Da non Pubblicare'}</div>
-
-
                             </div>
 
                             <div>
