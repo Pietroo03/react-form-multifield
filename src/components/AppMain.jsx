@@ -9,6 +9,9 @@ export default function AppMain() {
     const [newContent, setNewContent] = useState('')
     const [newCategory, setNewCategory] = useState('')
     const [isPublished, setIsPublished] = useState(false)
+    const [newTag, setNewTag] = useState([])
+
+    const tagList = ['Educativo', 'Divertente', 'Noioso', 'Complicato', 'Esaurito']
 
     function addArticle(e) {
         e.preventDefault(e)
@@ -18,7 +21,8 @@ export default function AppMain() {
             image: newImage,
             content: newContent,
             category: newCategory,
-            published: isPublished
+            published: isPublished,
+            tags: newTag
         }
 
         setArticle([
