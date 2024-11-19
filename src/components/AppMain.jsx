@@ -8,7 +8,6 @@ export default function AppMain() {
     const [newImage, setNewImage] = useState('')
     const [newContent, setNewContent] = useState('')
     const [newCategory, setNewCategory] = useState('')
-    const [editArticle, setEditArticle] = useState(null)
 
     function addArticle(e) {
         e.preventDefault(e)
@@ -20,24 +19,10 @@ export default function AppMain() {
             category: newCategory
         }
 
-        // if statement per le condizioni dell'edit
-
-        //se editArticle è settato su null, vuolo dire che non sto modificando qualcosa, ma lo sto aggiungendo
-        if (editArticle != null) {
-            const updatedArticles = [...articles]
-            console.log(updatedArticles);
-            updatedArticles[editArticle] = newArticleData
-            setArticle(updatedArticles)
-            setEditArticle(null)
-
-        } else {
-
-            setArticle([
-                ...articles,
-                newArticleData
-            ])
-
-        }
+        setArticle([
+            ...articles,
+            newArticleData
+        ])
 
         setNewTitle('')
         setNewImage('')
@@ -55,23 +40,6 @@ export default function AppMain() {
 
     }
 
-    function handleEdit(e) {
-
-        // recupero il data-index dell'articolo che voglio modificare
-        const articleIndex = Number(e.target.getAttribute('data-index'))
-        console.log(articleIndex);
-
-        // articleIndex corrisponderà alla posizione dell'oggetto, nell'array articles, che voglio modificare
-        const articleToEdit = articles[articleIndex]
-        console.log(articleToEdit);
-
-        setNewTitle(articleToEdit.title)
-        setNewImage(articleToEdit.image)
-        setNewContent(articleToEdit.content)
-        setNewCategory(articleToEdit.category)
-        setEditArticle(articleIndex)
-
-    }
 
     return (
 
@@ -140,7 +108,6 @@ export default function AppMain() {
                         </select>
                     </div>
 
-
                     <div className="text-center">
                         <button className="btn btn-primary" type="submit" id="button-addon2">Aggiungi Post</button>
                     </div>
@@ -161,7 +128,6 @@ export default function AppMain() {
                             </div>
 
                             <div>
-                                <button onClick={handleEdit} data-index={index} className="btn btn-success me-2">Modifica</button>
                                 <button onClick={handleRemove} data-index={index} className="btn btn-danger">Rimuovi</button>
                             </div>
                         </li>
