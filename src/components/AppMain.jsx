@@ -5,8 +5,9 @@ export default function AppMain() {
 
     const [articles, setArticle] = useState(articlesList)
     const [newTitle, setNewTitle] = useState('')
-    const [newAuthor, setNewAuthor] = useState('')
-    const [newYear, setNewYear] = useState('')
+    const [newImage, setNewImage] = useState('')
+    const [newContent, setNewContent] = useState('')
+    const [newCategory, setNewCategory] = useState('')
     const [editArticle, setEditArticle] = useState(null)
 
     function addArticle(e) {
@@ -14,8 +15,9 @@ export default function AppMain() {
 
         const newArticleData = {
             title: newTitle,
-            author: newAuthor,
-            year: newYear
+            image: newImage,
+            content: newContent,
+            category: newCategory
         }
 
         // if statement per le condizioni dell'edit
@@ -38,8 +40,9 @@ export default function AppMain() {
         }
 
         setNewTitle('')
-        setNewAuthor('')
-        setNewYear('')
+        setNewImage('')
+        setNewContent('')
+        setNewCategory('')
     }
 
     function handleRemove(e) {
@@ -63,8 +66,9 @@ export default function AppMain() {
         console.log(articleToEdit);
 
         setNewTitle(articleToEdit.title)
-        setNewAuthor(articleToEdit.author)
-        setNewYear(articleToEdit.year)
+        setNewImage(articleToEdit.image)
+        setNewContent(articleToEdit.content)
+        setNewCategory(articleToEdit.category)
         setEditArticle(articleIndex)
 
     }
@@ -77,56 +81,69 @@ export default function AppMain() {
                 <h2>Articles</h2>
 
                 <form onSubmit={addArticle}>
-                    <div className="mb-3">
+                    <div className="mb-3 input-titolo">
                         <label htmlFor="title" className="form-label">Titolo</label>
 
                         <div className="input-group mb-3">
                             <input type="text"
                                 className="form-control"
                                 placeholder="Aggiungi Titolo"
-                                aria-label="Recipient's username"
+                                aria-label="Recipient's title"
                                 aria-describedby="button-addon2"
                                 value={newTitle}
                                 onChange={e => setNewTitle(e.target.value)} />
-
-                            <button className="btn btn-primary" type="submit" id="button-addon2">Aggiungi Titolo</button>
                         </div>
 
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="author" className="form-label">Autore</label>
+                    <div className="mb-3 input-immagine">
+                        <label htmlFor="image" className="form-label">Immagine</label>
 
                         <div className="input-group mb-3">
                             <input type="text"
                                 className="form-control"
-                                placeholder="Aggiungi Autore"
-                                aria-label="Recipient's username"
+                                placeholder="Aggiungi link Immagine"
+                                aria-label="Recipient's image"
                                 aria-describedby="button-addon2"
-                                value={newAuthor}
-                                onChange={e => setNewAuthor(e.target.value)} />
-
-                            <button className="btn btn-primary" type="submit" id="button-addon2">Aggiungi Autore</button>
+                                value={newImage}
+                                onChange={e => setNewImage(e.target.value)} />
                         </div>
 
                     </div>
 
-                    <div className="mb-3">
-                        <label htmlFor="author" className="form-label">Anno di Pubblicazione</label>
+                    <div className="mb-3 input-contenuto">
+                        <label htmlFor="content" className="form-label">Aggiungi Contenuto</label>
 
                         <div className="input-group mb-3">
                             <input type="text"
                                 className="form-control"
-                                placeholder="Aggiungi Anno di Pubblicazione"
-                                aria-label="Recipient's username"
+                                placeholder="Aggiungi Contenuto"
+                                aria-label="Recipient's content"
                                 aria-describedby="button-addon2"
-                                value={newYear}
-                                onChange={e => setNewYear(e.target.value)} />
-
-                            <button className="btn btn-primary" type="submit" id="button-addon2">Aggiungi Anno</button>
+                                value={newContent}
+                                onChange={e => setNewContent(e.target.value)} />
                         </div>
 
                     </div>
+
+                    <div className="mb-3 input-categoria">
+                        <label htmlFor="category" className="form-label">Categoria</label>
+                        <select id="inputState"
+                            className="form-select"
+                            value={newCategory}
+                            onChange={e => setNewCategory(e.target.value)}>
+                            <option>Formativo</option>
+                            <option>Dibattito</option>
+                            <option>Ludico</option>
+                            <option>Q&A</option>
+                            <option>LETSGOSKI</option>
+                        </select>
+                    </div>
+
+                    <div className="text-center">
+                        <button className="btn btn-primary" type="submit" id="button-addon2">Aggiungi Post</button>
+                    </div>
+
 
                 </form>
 
@@ -135,9 +152,11 @@ export default function AppMain() {
                     {articles.map((article, index) =>
                         <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             <div>
-                                <div>Titolo: <strong>{article.title}</strong></div>
-                                <div>Autore: <strong>{article.author}</strong></div>
-                                <div>Anno di Pubblicazione: <strong>{article.year}</strong></div>
+                                <div><strong>{article.title}</strong></div>
+                                <div>{article.image}</div>
+                                <div>{article.content}</div>
+                                <div><strong>Categoria: </strong>{article.category}</div>
+
                             </div>
 
                             <div>
