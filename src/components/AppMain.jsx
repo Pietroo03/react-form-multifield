@@ -8,6 +8,7 @@ export default function AppMain() {
     const [newImage, setNewImage] = useState('')
     const [newContent, setNewContent] = useState('')
     const [newCategory, setNewCategory] = useState('')
+    const [isPublished, setIsPublished] = useState(false)
 
     function addArticle(e) {
         e.preventDefault(e)
@@ -16,7 +17,8 @@ export default function AppMain() {
             title: newTitle,
             image: newImage,
             content: newContent,
-            category: newCategory
+            category: newCategory,
+            published: isPublished
         }
 
         setArticle([
@@ -28,6 +30,7 @@ export default function AppMain() {
         setNewImage('')
         setNewContent('')
         setNewCategory('')
+        setIsPublished(false)
     }
 
     function handleRemove(e) {
@@ -39,7 +42,6 @@ export default function AppMain() {
         setArticle(articlesListUpdate)
 
     }
-
 
     return (
 
@@ -108,6 +110,16 @@ export default function AppMain() {
                         </select>
                     </div>
 
+                    <div className="mb-3">
+                        <label className="form-check-label" htmlFor="published">Da Pubblicare</label>
+                        <input className="form-check-input ms-2 "
+                            type="checkbox"
+                            id="published"
+                            checked={isPublished}
+                            onChange={e => setIsPublished(e.target.checked)} />
+
+                    </div>
+
                     <div className="text-center">
                         <button className="btn btn-primary" type="submit" id="button-addon2">Aggiungi Post</button>
                     </div>
@@ -124,6 +136,8 @@ export default function AppMain() {
                                 <div>{article.image}</div>
                                 <div>{article.content}</div>
                                 <div><strong>Categoria: </strong>{article.category}</div>
+                                <div><strong>Stato: </strong>{article.published ? 'Da Pubblicare' : 'Da non Pubblicare'}</div>
+
 
                             </div>
 
